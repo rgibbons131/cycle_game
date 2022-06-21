@@ -23,6 +23,8 @@ namespace Unit05_cycle.Game
         public static string CAPTION = "Snake";
         public static int SNAKE_LENGTH = 8;
 
+        public static int GROWTH_SPEED = 1;
+
         public static Color RED = new Color(255, 0, 0);
         public static Color WHITE = new Color(255, 255, 255);
         public static Color YELLOW = new Color(255, 255, 0);

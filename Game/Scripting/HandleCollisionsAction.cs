@@ -42,17 +42,17 @@ namespace Unit05_cycle.Game.Scripting
         /// <param name="cast">The cast of actors.</param>
         private void HandleFoodCollisions(Cast cast)
         {
-            Snake snake = (Snake)cast.GetFirstActor("snake");
+            Snake snake1 = (Snake)cast.GetFirstActor("bike1");
+            Snake snake2 = (Snake)cast.GetFirstActor("bike2");
             Score score = (Score)cast.GetFirstActor("score");
             Food food = (Food)cast.GetFirstActor("food");
             
-            if (snake.GetHead().GetPosition().Equals(food.GetPosition()))
-            {
+
                 int points = food.GetPoints();
-                snake.GrowTail(points);
+                snake1.GrowTail(Constants.GROWTH_SPEED, Constants.RED);
+                snake2.GrowTail(Constants.GROWTH_SPEED, Constants.YELLOW);
                 score.AddPoints(points);
                 food.Reset();
-            }
         }
 
         /// <summary>
@@ -90,8 +90,10 @@ namespace Unit05_cycle.Game.Scripting
         {
             if (isGameOver == true)
             {
-                Snake snake = (Snake)cast.GetFirstActor("snake");
-                List<Actor> segments = snake.GetSegments();
+                Snake snake1 = (Snake)cast.GetFirstActor("bike1");
+                List<Actor> segments1 = snake1.GetSegments();
+                Snake snake2 = (Snake)cast.GetFirstActor("bike2");
+                List<Actor> segments2 = snake2.GetSegments();
                 Food food = (Food)cast.GetFirstActor("food");
 
                 // create a "game over" message
@@ -105,7 +107,11 @@ namespace Unit05_cycle.Game.Scripting
                 cast.AddActor("messages", message);
 
                 // make everything white
-                foreach (Actor segment in segments)
+                foreach (Actor segment in segments1)
+                {
+                    segment.SetColor(Constants.WHITE);
+                }
+                foreach (Actor segment in segments2)
                 {
                     segment.SetColor(Constants.WHITE);
                 }

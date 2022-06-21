@@ -12,12 +12,13 @@ namespace Unit05_cycle.Game.Casting
     {
         private List<Actor> segments = new List<Actor>();
 
+
         /// <summary>
         /// Constructs a new instance of a Snake.
         /// </summary>
-        public Snake()
+        public Snake(bool leftSnake)
         {
-            PrepareBody();
+            PrepareBody(leftSnake);
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Unit05_cycle.Game.Casting
         /// Grows the snake's tail by the given number of segments.
         /// </summary>
         /// <param name="numberOfSegments">The number of segments to grow.</param>
-        public void GrowTail(int numberOfSegments)
+        public void GrowTail(int numberOfSegments, Color color)
         {
             for (int i = 0; i < numberOfSegments; i++)
             {
@@ -64,7 +65,7 @@ namespace Unit05_cycle.Game.Casting
                 segment.SetPosition(position);
                 segment.SetVelocity(velocity);
                 segment.SetText("#");
-                segment.SetColor(Constants.GREEN);
+                segment.SetColor(color);
                 segments.Add(segment);
             }
         }
@@ -98,17 +99,26 @@ namespace Unit05_cycle.Game.Casting
         /// <summary>
         /// Prepares the snake body for moving.
         /// </summary>
-        private void PrepareBody()
+        private void PrepareBody(bool leftSnake)
         {
-            int x = Constants.MAX_X / 2;
-            int y = Constants.MAX_Y / 2;
+            int x = 0;
+            int y = 0;
+            if (leftSnake){
+            x = Constants.MAX_X / 4;
+            y = Constants.MAX_Y / 2;}
+            else{
+            x = 3 * Constants.MAX_X / 4;
+            y = Constants.MAX_Y / 2;}
 
             for (int i = 0; i < Constants.SNAKE_LENGTH; i++)
             {
                 Point position = new Point(x - i * Constants.CELL_SIZE, y);
                 Point velocity = new Point(1 * Constants.CELL_SIZE, 0);
                 string text = i == 0 ? "8" : "#";
-                Color color = i == 0 ? Constants.YELLOW : Constants.GREEN;
+                Color color = i == 0 ? Constants.YELLOW : Constants.YELLOW;
+                if (leftSnake){
+                color = i == 0 ? Constants.RED : Constants.RED;
+                velocity.Reverse();}
 
                 Actor segment = new Actor();
                 segment.SetPosition(position);
