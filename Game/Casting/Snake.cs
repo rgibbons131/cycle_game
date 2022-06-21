@@ -117,8 +117,7 @@ namespace Unit05_cycle.Game.Casting
                 string text = i == 0 ? "8" : "#";
                 Color color = i == 0 ? Constants.YELLOW : Constants.YELLOW;
                 if (leftSnake){
-                color = i == 0 ? Constants.RED : Constants.RED;
-                velocity.Reverse();}
+                color = i == 0 ? Constants.RED : Constants.RED;}
 
                 Actor segment = new Actor();
                 segment.SetPosition(position);
