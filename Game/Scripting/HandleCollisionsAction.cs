@@ -70,16 +70,18 @@ namespace Unit05_cycle.Game.Scripting
 
             foreach (Actor segment in body1)
             {
-                if (segment.GetPosition().Equals(head1.GetPosition()))
+                if (segment.GetPosition().Equals(head2.GetPosition()))
                 {
                     isGameOver = true;
+                    break;
                 }
             }
             foreach (Actor segment in body2)
             {
-                if (segment.GetPosition().Equals(head2.GetPosition()))
+                if (segment.GetPosition().Equals(head1.GetPosition()))
                 {
                     isGameOver = true;
+                    break;
                 }
             }
         }
